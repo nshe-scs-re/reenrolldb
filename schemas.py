@@ -2,6 +2,13 @@ from typing import Union, Optional
 
 from pydantic import BaseModel
 
+class EnvironmentBase(BaseModel):
+    id: str
+    document: dict | str
+
+    class Config:
+        orm_mode = True
+
 class UserBase(BaseModel):
     id: str
     username: str
@@ -57,7 +64,13 @@ class SubmissionCreate(Submission):
     courses: list[Course]
 
 class User(UserBase):
-    submissions: list[Submission]
+    submissions: Optional[list[Submission]]
+    environments: Optional[list[EnvironmentBase]]
+
+class Environment(EnvironmentBase):
+    user: UserBase
+    course: Optional[CourseBase]
+    instance: Optional[dict]
 
 class UserCreate(User):
     pass
