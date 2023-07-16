@@ -69,10 +69,15 @@ class User(UserBase):
 
 class Environment(EnvironmentBase):
     user: UserBase
-    course: Optional[CourseBase]
-    instance: Optional[dict]
+    submisson: Optional[SubmissionBase]
+    document: Optional[dict]
 
-class UserCreate(User):
+class EnvironmentCreate(EnvironmentBase):
+    user: UserBase
+    submisson: Optional[SubmissionBase]
+    document: Optional[dict]
+
+class UserCreate(UserBase):
     pass
 
 class UserSearch(BaseModel):

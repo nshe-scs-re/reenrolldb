@@ -15,8 +15,10 @@ def get_users(db: Session, skip: int = 0, limit: int = 100):
     return db.query(models.User).offset(skip).limit(limit).all()
 
 def create_user(db: Session, user: schemas.UserCreate):
+    
+    u = schemas.UserCreate.parse_obj(user)
 
-    new_user = models.Submission(**user)
+    new_user = models.User(**u.dict())
     db.add(new_user)
     db.commit()
 
@@ -40,7 +42,7 @@ def create_course(db: Session, course: schemas.CourseCreate):
 
     c = schemas.CourseCreate.parse_obj(course)
 
-    new_course = models.Course(**c)
+    new_course = models.Course(**c.dict())
     db.add(new_course)
     db.commit()
     db.refresh(new_course)
@@ -60,7 +62,7 @@ def create_service(db: Session, service: schemas.ServiceCreate):
 
     s = schemas.ServiceCreate.parse_obj(service)
 
-    new_service = models.Service(**s)
+    new_service = models.Service(**s.dict())
     db.add(new_service)
     db.commit()
     db.refresh(new_service)
@@ -78,7 +80,7 @@ def create_submission(db: Session, submission: schemas.SubmissionCreate):
 
     s = schemas.SubmissionCreate.parse_obj(submission)
     
-    new_submission = models.Submission(**s)
+    new_submission = models.Submission(**submission)
     db.add(new_submission)
     db.commit()
     db.refresh(new_submission)
@@ -96,7 +98,7 @@ def get_environments(db: Session, skip: int = 0, limit: int = 100):
 
 def create_environment(db: Session, environment: schemas.EnvironmentCreate):
 
-    e = schemas.EnvironmentCreate.parse_obj(environment)
+    schemas.EnvironmentCreate.parse_obj(environment)
 
     new_environment = models.Environment(**environment)
     db.add(new_environment)
