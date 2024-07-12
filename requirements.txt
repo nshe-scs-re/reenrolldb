@@ -13,7 +13,7 @@ pydantic==1.10.12
 pytest==7.4.0
 pytest-mock==3.11.1
 python-dotenv==1.0.0
-requests==2.31.0
+requests==2.32.2
 SQLAlchemy==2.0.20
 tomli==2.0.1
 typing_extensions==4.7.1
